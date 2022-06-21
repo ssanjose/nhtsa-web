@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { styled } from "@mui/system";
 
 export const ResultContainer = styled((props) => (
@@ -17,3 +17,10 @@ export const ResultContainer = styled((props) => (
       order: 1,
     },
   }));
+
+export const ResultItem = styled((props) => (<Paper
+  {...props}
+/>))(({ theme }) => ({
+  padding: theme.spacing(3),
+  boxShadow: 'none !important',
+}));
