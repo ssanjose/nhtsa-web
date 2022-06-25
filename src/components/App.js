@@ -5,31 +5,19 @@ import { ResultPage } from './Result';
 import { lightTheme } from '../themes/light';
 import { SearchPage } from './Search';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-
-const SearchCar = (vinMethod, reqData, data) => {
-  if (vinMethod) {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/${process.env.API_VERSION}
-        /model?make=${reqData.make}&year=${reqData.year}`)
-      .then(res => {
-        console.log(res.data.message);
-      }).catch(error => {
-        console.log(error);
-      })
-  }
-};
+import { API } from '../api/APIConfig';
 
 function App() {
-  const [vinMethod, setVinMethod] = useState(false);
+  const [vinMethod, setVinMethod] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(null);
 
-  // useEffect(() => {
-  //   axios.get(`${process.env.REACT_APP_API_URL}/api/v1/ping`)
-  //     .then(res => {
-  //       console.log(res.data.message);
-  //     }).catch(error => {
-  //       console.log(error);
-  //     })
-  // }, []);
+  useEffect(() => {
+    API.get('/ping')
+      .catch(error => {
+        console.log(error);
+      })
+  }, []);
 
   return (
     <ScopedCssBaseline enableColorScheme>
@@ -41,10 +29,13 @@ function App() {
         }}>
           <SearchPage
             vinMethod={vinMethod}
-            setVinMethod={setVinMethod} />
+            setVinMethod={setVinMethod}
+            setLoading={setLoading}
+            setData={setData} />
           <ResultPage
             vinMethod={vinMethod}
-            setVinMethod={setVinMethod} />
+            data={data}
+            loading={loading} />
         </Box>
       </ThemeProvider>
     </ScopedCssBaseline>
