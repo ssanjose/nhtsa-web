@@ -30,9 +30,6 @@ export const lightTheme = createTheme({
 
   },
   palette: {
-    primary: {
-      main: '#FAFAFA',
-    },
     text: {
       default: '#FAFAFA',
       reverseprimary: '#FFF',
