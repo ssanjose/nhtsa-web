@@ -5,7 +5,6 @@ export const ResultContainer = styled((props) => (
   <Box
     {...props}
   />))(({ theme }) => ({
-    height: "100%",
     backgroundColor: theme.palette.background.default,
 
     [theme.breakpoints.up('xs')]: {
@@ -16,6 +15,14 @@ export const ResultContainer = styled((props) => (
       flex: 2,
       order: 1,
     },
+  }));
+
+export const ResultMain = styled((props) => (
+  <Box
+    {...props}
+  />))(({ theme }) => ({
+    minHeight: "80%",
+    padding: '5%',
   }));
 
 export const ResultItem = styled((props) => (<Paper
